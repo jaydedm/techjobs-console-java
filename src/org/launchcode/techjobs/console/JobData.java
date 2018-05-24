@@ -75,8 +75,10 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            String upperaValue = aValue.toUpperCase();
+            String upperValue = value.toUpperCase();
 
-            if (aValue.contains(value)) {
+            if (upperaValue.contains(upperValue)) {
                 jobs.add(row);
             }
         }
@@ -125,4 +127,36 @@ public class JobData {
         }
     }
 
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        loadData();
+
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("name");
+        columns.add("employer");
+        columns.add("location");
+        columns.add("position type");
+        columns.add("core competency");
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+
+
+            for (String column : columns) {
+                String aValue = row.get(column);
+                String upperaValue = aValue.toUpperCase();
+                String upperValue = value.toUpperCase();
+
+                if (upperaValue.contains(upperValue)) {
+                    jobs.add(row);
+
+                }
+            }
+
+        }
+
+        return jobs;
+
+    }
 }
